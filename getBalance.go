@@ -4,7 +4,6 @@ import (
 	"context"
 	"encoding/json"
 	"io/ioutil"
-	"log"
 	"net/http"
 
 	"github.com/portto/solana-go-sdk/client"
@@ -31,7 +30,6 @@ func getBalance(w http.ResponseWriter, r *http.Request) {
 		fatal := Error{Status: false, Message: "get balance error " + string(err.Error())}
 		json.NewEncoder(w).Encode(fatal)
 		return
-		log.Fatalln("get balance error", err)
 	}
 	accountBalance := Balance{Status: true, Balance: balance}
 	json.NewEncoder(w).Encode(accountBalance)

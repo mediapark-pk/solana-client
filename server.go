@@ -11,6 +11,7 @@ import (
 func handleRequests() {
 	myRouter := mux.NewRouter().StrictSlash(true)
 	myRouter.HandleFunc("/createKeyPair", createKeyPair)
+	myRouter.HandleFunc("/hello", hello)
 	myRouter.HandleFunc("/pKToAddress", pKToAddress).Methods("POST")
 	myRouter.HandleFunc("/getBalance", getBalance).Methods("POST")
 	myRouter.HandleFunc("/createAndSendTransaction", createAndSendTransaction).Methods("POST")

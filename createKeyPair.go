@@ -40,3 +40,8 @@ func pKToAddress(w http.ResponseWriter, r *http.Request) {
 	keypair := KeyPair{Status: true, AccountAddress: account.PublicKey.ToBase58(), PrivateKey: account.PrivateKey}
 	json.NewEncoder(w).Encode(keypair)
 }
+func hello(w http.ResponseWriter, r *http.Request) {
+	fatal := Error{Status: true, Message: "hello solana "}
+	json.NewEncoder(w).Encode(fatal)
+
+}

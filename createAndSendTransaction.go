@@ -31,11 +31,7 @@ func createAndSendTransaction(w http.ResponseWriter, r *http.Request) {
 	reqBody, _ := ioutil.ReadAll(r.Body)
 	var transactionObj TransactionObject
 	json.Unmarshal(reqBody, &transactionObj)
-	if &transactionObj != nil {
-		fatal := Error{Status: false, Message: "payload is not correct;  Required params : senderPK  , recipientAddress , amount "}
-		json.NewEncoder(w).Encode(fatal)
-		return
-	}
+
 	if transactionObj.SenderPrivateKey == "" {
 		fatal := Error{Status: false, Message: "Required Param , senderPK"}
 		json.NewEncoder(w).Encode(fatal)

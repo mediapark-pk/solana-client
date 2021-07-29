@@ -28,7 +28,7 @@ func getBalance(w http.ResponseWriter, r *http.Request) {
 	c := client.NewClient(client.MainnetRPCEndpoint)
 	balance, err := c.GetBalance(context.Background(), address.Address)
 	if err != nil {
-		fatal := Error{Status: false, Message: "get balance error", err}
+		fatal := Error{Status: false, Message: "get balance error " + string(err.Error())}
 		json.NewEncoder(w).Encode(fatal)
 		return
 		log.Fatalln("get balance error", err)

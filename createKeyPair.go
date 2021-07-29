@@ -21,6 +21,7 @@ type PK struct {
 }
 
 func createKeyPair(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
 	account := types.NewAccount()
 	keypair := KeyPair{Status: true, AccountAddress: account.PublicKey.ToBase58(), PrivateKey: account.PrivateKey}
 	json.NewEncoder(w).Encode(keypair)
@@ -30,6 +31,7 @@ func pKToAddress(w http.ResponseWriter, r *http.Request) {
 	reqBody, _ := ioutil.ReadAll(r.Body)
 	var privkeybytes PK
 	json.Unmarshal(reqBody, &privkeybytes)
+	w.Header().Set("Content-Type", "application/json")
 	privBytes, err := Base64Decode([]byte(privkeybytes.PrivateKey))
 	if err != nil {
 		fatal := Error{Status: false, Message: string(err.Error())}
@@ -41,6 +43,7 @@ func pKToAddress(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(keypair)
 }
 func hello(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
 	fatal := Error{Status: true, Message: "hello solana "}
 	json.NewEncoder(w).Encode(fatal)
 

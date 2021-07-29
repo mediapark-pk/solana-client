@@ -32,6 +32,7 @@ func createAndSendTransaction(w http.ResponseWriter, r *http.Request) {
 	var transactionObj TransactionObject
 	json.Unmarshal(reqBody, &transactionObj)
 
+	w.Header().Set("Content-Type", "application/json")
 	if transactionObj.SenderPrivateKey == "" {
 		fatal := Error{Status: false, Message: "Required Param , senderPK"}
 		json.NewEncoder(w).Encode(fatal)

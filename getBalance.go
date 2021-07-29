@@ -24,6 +24,7 @@ func getBalance(w http.ResponseWriter, r *http.Request) {
 	reqBody, _ := ioutil.ReadAll(r.Body)
 	var address Address
 	json.Unmarshal(reqBody, &address)
+	w.Header().Set("Content-Type", "application/json")
 	c := client.NewClient(client.MainnetRPCEndpoint)
 	balance, err := c.GetBalance(context.Background(), address.Address)
 	if err != nil {

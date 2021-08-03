@@ -22,8 +22,8 @@ type TransactionObject struct {
 
 // TransactionSuccess struct
 type TransactionSuccess struct {
-	Status  bool   `json:"status"`
-	Message string `json:"hash"`
+	Status bool   `json:"status"`
+	Hash   string `json:"hash"`
 }
 
 func createAndSendTransaction(w http.ResponseWriter, r *http.Request) {
@@ -101,6 +101,6 @@ func createAndSendTransaction(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	txSuccess := TransactionSuccess{Status: true, Message: txhash}
+	txSuccess := TransactionSuccess{Status: true, Hash: txhash}
 	json.NewEncoder(w).Encode(txSuccess)
 }

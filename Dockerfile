@@ -26,7 +26,7 @@ RUN go get -v github.com/portto/solana-go-sdk/types
 
 
 #build the go app
-RUN GOOS=linux GOARCH=amd64 go build -o ./sdk ./createAndSendTransaction.go    createKeyPair.go    getBalance.go utils.go server.go
+RUN GOOS=linux GOARCH=amd64 go build -o ./sdk ./createAndSendTransaction.go createKeyPair.go getBalance.go utils.go tokenTransfer.go  server.go
 
 ########
 # Package into runtime image

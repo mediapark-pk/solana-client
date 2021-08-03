@@ -38,4 +38,4 @@ COPY --from=builder /go/src/solana-sdk/sdk .
 
 ENTRYPOINT ["/sdk"]
 
-EXPOSE 12345 98758
+EXPOSE 12345 3004

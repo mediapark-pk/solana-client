@@ -4,5 +4,5 @@ services:
     build: .
     restart: always
     ports:
-      - 12345:98758
+      - 12345:3004
 

@@ -3,7 +3,6 @@ package main
 import (
 	"context"
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
 	"math"
 	"net/http"
@@ -51,7 +50,6 @@ func createAndSendTransaction(w http.ResponseWriter, r *http.Request) {
 		return
 
 	}
-	fmt.Println(transactionObj.Amount)
 	if math.IsNaN(transactionObj.Amount) {
 		fatal := Error{Status: false, Message: "amount is not a number"}
 		json.NewEncoder(w).Encode(fatal)
@@ -77,6 +75,7 @@ func createAndSendTransaction(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		fatal := Error{Status: false, Message: string("get recent block hash error, error " + string(err.Error()))}
 		json.NewEncoder(w).Encode(fatal)
+		return
 	}
 	rawTx, err := types.CreateRawTransaction(types.CreateRawTransactionParam{
 		Instructions: []types.Instruction{

@@ -23,7 +23,7 @@ type TransactionObject struct {
 // TransactionSuccess struct
 type TransactionSuccess struct {
 	Status  bool   `json:"status"`
-	Message string `json:"message"`
+	Message string `json:"hash"`
 }
 
 func createAndSendTransaction(w http.ResponseWriter, r *http.Request) {

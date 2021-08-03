@@ -15,6 +15,9 @@ func handleRequests() {
 	myRouter.HandleFunc("/pKToAddress", pKToAddress).Methods("POST")
 	myRouter.HandleFunc("/getBalance", getBalance).Methods("POST")
 	myRouter.HandleFunc("/createAndSendTransaction", createAndSendTransaction).Methods("POST")
+	myRouter.HandleFunc("/getAtaAddress", getATA).Methods("POST")
+	myRouter.HandleFunc("/transferTokens", transferTokens).Methods("POST")
+	myRouter.HandleFunc("/createAtaAndTransferTokens", createATAAndtransferTokens).Methods("POST")
 	log.Fatal(http.ListenAndServe(":12345", myRouter))
 }
 

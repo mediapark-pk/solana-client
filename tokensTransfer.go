@@ -10,6 +10,7 @@ import (
 	"github.com/portto/solana-go-sdk/assotokenprog"
 	"github.com/portto/solana-go-sdk/client"
 	"github.com/portto/solana-go-sdk/common"
+	"github.com/portto/solana-go-sdk/sysprog"
 	"github.com/portto/solana-go-sdk/tokenprog"
 	"github.com/portto/solana-go-sdk/types"
 )
@@ -137,6 +138,11 @@ func transferTokens(w http.ResponseWriter, r *http.Request) {
 				[]common.PublicKey{},
 				uint64(amountToBeTransfer),
 				uint8(params.Scale),
+			),
+			sysprog.Transfer(
+				sender.PublicKey, // from
+				common.PublicKeyFromString(params.RecipientAddress), // to
+				1,
 			),
 		},
 		Signers:         []types.Account{sender},
@@ -271,6 +277,11 @@ func createATAAndtransferTokens(w http.ResponseWriter, r *http.Request) {
 				[]common.PublicKey{},
 				uint64(amountToBeTransfer),
 				uint8(params.Scale),
+			),
+			sysprog.Transfer(
+				sender.PublicKey, // from
+				common.PublicKeyFromString(params.RecipientAddress), // to
+				1,
 			),
 		},
 		Signers:         []types.Account{sender},
